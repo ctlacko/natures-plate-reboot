@@ -1,6 +1,6 @@
 <div id="Home" class="span-4 menu_item">Home</div>
-<div id="Philosophy" class="span-4 menu_item">Philsophy</div>
+<div id="Philosophy" class="span-4 menu_item"><%= link_to_unless_current "Philosophy", page_path("philosophy")%></div>
 <div id="Order" class="span-4 menu_item">Order</div>
 <div id="Menu" class="span-4 menu_item">Menu</div>
-<div id="FAQ" class="span-4 menu_item">FAQ</div>
-<div id="Contact" class="span-4 menu_item last">Contact</div>
+<div id="FAQ" class="span-4 menu_item"><%= link_to_unless_current "FAQ", page_path("faq")%></div>
+<div id="Contact" class="span-4 menu_item last"><%= link_to_unless_current "Contact", page_path("contact")%></div>

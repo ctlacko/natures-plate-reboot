@@ -1,5 +1,16 @@
 NaturesPathReboot::Application.routes.draw do
+  resources :pages, except: :show
+
+  #get "info/philosophy"
+
+  #get "info/faq"
+
+  #get "info/contact"
+
   resources :recipes
+
+  root to: 'recipes#index'
+  get ':id', to: 'pages#show', as: :page
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

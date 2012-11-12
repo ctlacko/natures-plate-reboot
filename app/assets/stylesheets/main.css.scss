@@ -22,13 +22,36 @@ $np-grey: #c0c0c0;
 $np-red: #c0504d;
 #content {
   font-family:"Berlin Sans FB";
+  color: #FFFFFF;
+}
+.center {
+  text-align:center;
+}
+#footer {
+  background: $np-green;
+  padding-top:3px;
+  margin-top:10px;
+}
+h1 { 
+  color: #FFFFFF;
+  font-family:"Berlin Sans FB Demi Bold";
+}
+a {
+  text-decoration: none;
+  color: #FFFFFF;
 }
 .menu_item {
-  color: #FFFFFF;
   padding-top: 3px;
   padding-bottom: 3px;
   text-align:center;
   font-size:2.0em;
+}
+#page-content {
+  background: $np-blue;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 #Home {
   background: $np-blue;
