@@ -1,0 +1,16 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$np-blue: #4f81bd;
+$np-green: #92d050;
+$np-grey: #c0c0c0;
+$np-red: #c0504d;
+.Philosophy {
+  background: $np-green;
+}
+.Order{
+  background: $np-red;
+}
+.Contact{
+  background: $np-red;
+}
