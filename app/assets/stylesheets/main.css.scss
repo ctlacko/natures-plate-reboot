@@ -1,0 +1,50 @@
+@font-face {
+  font: {
+    family: "Berlin Sans FB Demi Bold";
+    weight: "normal";
+    style: "normal";
+  }
+  src: asset-url('BRLNSDB.ttf', font);
+}
+
+@font-face {
+  font: {
+    family: "Berlin Sans FB";
+    weight: "normal";
+    style: "normal";
+  }
+  src: asset-url('berlinsans.ttf', font);
+}
+// NP colors
+$np-blue: #4f81bd;
+$np-green: #92d050;
+$np-grey: #c0c0c0;
+$np-red: #c0504d;
+#content {
+  font-family:"Berlin Sans FB";
+}
+.menu_item {
+  color: #FFFFFF;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align:center;
+  font-size:2.0em;
+}
+#Home {
+  background: $np-blue;
+}
+#Philosophy {
+  background: $np-green;
+}
+#Order {
+  background: $np-red;
+}
+#Menu{
+  background: $np-blue;
+}
+#FAQ{
+  background: $np-green;
+}
+#Contact{
+  background: $np-red;
+}

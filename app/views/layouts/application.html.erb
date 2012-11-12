@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NaturesPathReboot</title>
+  <title>Nature's Plate</title>
+  <%= stylesheet_link_tag 'blueprint/screen', :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'blueprint/print', :media => "print" %>
+  <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" %><![endif]-->
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <div class="container" id="content">
+    <%= render "header" %>
+    <%= render "menu" %>
+    <div id="page-content" class="span-24">
+      <%= yield %>
+    </div>
+    <%= render "footer" %>
+  </div>
 
 </body>
 </html>
