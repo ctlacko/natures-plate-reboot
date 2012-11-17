@@ -20,6 +20,8 @@ $np-blue: #4f81bd;
 $np-green: #92d050;
 $np-grey: #c0c0c0;
 $np-red: #c0504d;
+$np-padding: 10px 10px 10px 10px; 
+
 #content {
   font-family:"Berlin Sans FB";
   color: #FFFFFF;
@@ -30,7 +32,6 @@ $np-red: #c0504d;
 #footer {
   background: $np-green;
   padding-top:3px;
-  margin-top:10px;
 }
 h1 { 
   color: #FFFFFF;

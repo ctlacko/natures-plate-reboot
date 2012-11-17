@@ -1,0 +1,39 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "home_posts.js" %>
+<% end %>
+<p id="notice"><%= notice %></p>
+
+<hr class="space">
+<div id="home-post-side" class="home-post-side span-6 first">
+  <h2>Ingredient Close Up</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+</div>
+<div class = "prepend-1 span-16 last">
+  <div id="home-post-top" class ="home-post-top">
+    <p>
+    <h2><%= @home_post.top_title %></h2>
+    </p>
+
+    <p>
+    <%= @home_post.top_body %>
+    </p>
+  </div>
+  <hr class="space">
+
+  <div id="home-post-bottom" class ="home-post-bottom">
+    <p>
+    <b>Bottom body:</b>
+    <%= @home_post.bottom_body %>
+    </p>
+
+    <p>
+    <b>Bottom title:</b>
+    <%= @home_post.bottom_title %>
+    </p>
+  </div>
+</div>
+
+
+
+<%= link_to 'Edit', edit_home_post_path(@home_post) %> |
+<%= link_to 'Back', home_posts_path %>

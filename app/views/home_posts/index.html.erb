@@ -1,0 +1,33 @@
+<div id="page-content" class="span-24">
+  <h1>Listing home_posts</h1>
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Top body</th>
+      <th>Bottom body</th>
+      <th>Top title</th>
+      <th>Bottom title</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @home_posts.each do |home_post| %>
+      <tr>
+        <td><%= home_post.title %></td>
+        <td><%= home_post.top_body %></td>
+        <td><%= home_post.bottom_body %></td>
+        <td><%= home_post.top_title %></td>
+        <td><%= home_post.bottom_title %></td>
+        <td><%= link_to 'Show', home_post %></td>
+        <td><%= link_to 'Edit', edit_home_post_path(home_post) %></td>
+        <td><%= link_to 'Destroy', home_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br />
+
+  <%= link_to 'New Home post', new_home_post_path %>
+</div>

@@ -1,0 +1,2 @@
+module HomePostsHelper
+end

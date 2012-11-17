@@ -1,4 +1,6 @@
 NaturesPathReboot::Application.routes.draw do
+  resources :home_posts
+
   resources :pages, except: :show
 
   #get "info/philosophy"
@@ -9,7 +11,7 @@ NaturesPathReboot::Application.routes.draw do
 
   resources :recipes
 
-  root to: 'recipes#index'
+  root to: 'home_posts#index'
   get ':id', to: 'pages#show', as: :page
 
   # The priority is based upon order of creation:
