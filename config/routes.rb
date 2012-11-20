@@ -1,4 +1,11 @@
 NaturesPathReboot::Application.routes.draw do
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+
+  resources :sessions
+  resources :users
+
   resources :home_posts
 
   resources :pages, except: :show
@@ -11,8 +18,8 @@ NaturesPathReboot::Application.routes.draw do
 
   resources :recipes
 
-  root to: 'home_posts#index'
   get ':id', to: 'pages#show', as: :page
+  root to: 'home_posts#show', id: 1
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

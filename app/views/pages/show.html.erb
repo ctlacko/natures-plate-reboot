@@ -5,6 +5,10 @@
 
   <%= simple_format @page.content %>
 
-  <%= link_to 'Edit', edit_page_path(@page) %> |
-  <%= link_to 'Back', pages_path %>
+  <% if admin %>
+
+    <%= link_to 'Edit', edit_page_path(@page) %> |
+    <%= link_to 'Back', pages_path %>
+
+  <% end%>
 </div>
