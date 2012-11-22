@@ -1,0 +1,19 @@
+A new user is requesting access to NaturesPlate.biz!
+
+Here is their information:
+
+Username: <%= @user.email %>
+First name: <%=  @user.first_name %>
+Last name: <%= @user.last_name %>
+Phone number: <%= @user.phone_number %>
+Street address: <%= @user.street_address %>
+Zip code: <%= @user.zip_code %>
+
+
+Go to the URL below to confirm access.
+
+<%= (Rails.root.to_s + confirm_path( :id => @user.id, :confirmation_code => @user.confirmation_code )).to_s%>
+
+<%= link_to "Confirm access", Rails.root.to_s + confirm_path( :id => @user.id, :confirmation_code => @user.confirmation_code ) %>
+
+
