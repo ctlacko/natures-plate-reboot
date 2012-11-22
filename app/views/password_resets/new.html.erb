@@ -1,15 +1,19 @@
 
-<div id="page-content" class="span-24">
+<div id="" class="span-23 np-red np-padding">
 
 
-  <h1>Reset Password</h1>
 
   <%= form_tag password_resets_path, :method => :post do %>
-    <div class="field">
-      <%= label_tag :email %>
-      <%= text_field_tag :email, params[:email] %>
-    </div>
-    <div class="actions"><%= submit_tag "Reset Password" %></div>
+
+    <fieldset class="span-12 np-red">
+      <legend><h1>Reset Password</h1></legend>
+      <div class="field">
+        <div class ="prepend-1 span-2"><%= label_tag :email %></div>
+        <div class="span-3"><%= text_field_tag :email, params[:email] %></div>
+      </div>
+      <hr class="space"/>
+      <div class="prepend-3 actions"><%= submit_tag "Reset Password" %></div>
+    </fieldset>
   <% end %>
 
 

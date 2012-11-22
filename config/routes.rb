@@ -1,5 +1,8 @@
 NaturesPathReboot::Application.routes.draw do
 
+
+  get 'users/:id/confirm/:confirmation_code', to: 'users#check_confirm_code', as: 'confirm'
+
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
