@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122005101) do
+ActiveRecord::Schema.define(:version => 20121203005513) do
 
   create_table "home_posts", :force => true do |t|
     t.string   "title"
@@ -21,6 +21,49 @@ ActiveRecord::Schema.define(:version => 20121122005101) do
     t.string   "bottom_title"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "path"
+    t.string   "image_object_file_name"
+    t.string   "image_object_content_type"
+    t.integer  "image_object_file_size"
+    t.datetime "image_object_updated_at"
+    t.integer  "image_reference_id"
+    t.string   "image_reference_type"
+  end
+
+  add_index "images", ["image_reference_id", "image_reference_type"], :name => "index_images_on_image_reference_id_and_image_reference_type"
+
+  create_table "ingredients", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "image_reference_id"
+    t.string   "image_reference_type"
+  end
+
+  add_index "ingredients", ["image_reference_id"], :name => "index_ingredients_on_image_reference_id"
+
+  create_table "ingredients_recipes", :force => true do |t|
+    t.integer "recipe_id"
+    t.integer "ingredient_id"
+  end
+
+  create_table "nutrition_infos", :force => true do |t|
+    t.float    "calories"
+    t.float    "protein"
+    t.float    "fat"
+    t.float    "carbohydates"
+    t.float    "fiber"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "recipe_id"
   end
 
   create_table "pages", :force => true do |t|
@@ -35,15 +78,20 @@ ActiveRecord::Schema.define(:version => 20121122005101) do
 
   create_table "recipes", :force => true do |t|
     t.string   "title"
-    t.decimal  "price"
-    t.decimal  "calories"
-    t.decimal  "protein"
-    t.decimal  "fat"
-    t.decimal  "carbohydrates"
-    t.decimal  "fiber"
     t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.string   "type"
+    t.integer  "image_reference_id"
+    t.string   "image_reference_type"
+    t.integer  "nutrition_info_id"
+  end
+
+  add_index "recipes", ["image_reference_id", "image_reference_type"], :name => "index_recipes_on_image_reference_id_and_image_reference_type"
+
+  create_table "recipes_ingredients", :force => true do |t|
+    t.integer "recipe_id"
+    t.integer "ingredient_id"
   end
 
   create_table "users", :force => true do |t|

@@ -26,7 +26,13 @@ $np-padding-sides: 20px;
 
 .login {
   background: $np-blue;
+}
+.login-text {
+  background: $np-blue;
   text-align:right;
+  font-size: 14pt;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 .np-padding {
   padding-bottom: $np-padding-top-bottom;
@@ -34,8 +40,12 @@ $np-padding-sides: 20px;
   padding-left: $np-padding-sides;
   padding-right: $np-padding-sides;
 }
+
 .np-red {
   background: $np-red;
+}
+.np-blue {
+  background: $np-blue;
 }
 
 #content {
@@ -57,19 +67,23 @@ a {
   text-decoration: none;
   color: #FFFFFF;
 }
+a:visited {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
 .menu_item {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 13px;
+  padding-bottom: 13px;
   text-align:center;
   font-size:2.0em;
 }
-#page-content {
-  background: $np-blue;
+/*#page-content {
   margin-top: 20px;
   padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
-}
+}*/
 #Home {
   background: $np-blue;
 }

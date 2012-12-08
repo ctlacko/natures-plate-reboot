@@ -21,10 +21,15 @@ class RecipesController < ApplicationController
     end
   end
 
+  #def build_nutrition_info
+    #@recipe.nutrition_info_attributes = params[:nutrition_infos]
+  #end
+
   # GET /recipes/new
   # GET /recipes/new.json
   def new
     @recipe = Recipe.new
+    @recipe.build_nutrition_info
 
     respond_to do |format|
       format.html # new.html.erb

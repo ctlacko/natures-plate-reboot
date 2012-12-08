@@ -2,10 +2,21 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
+
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+
+# get the latest paperclip gem for uploading images
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk' 
+
+
+#group :development do
+  #gem "fog"
+#end
 
 
 # Gems used only for assets and not required

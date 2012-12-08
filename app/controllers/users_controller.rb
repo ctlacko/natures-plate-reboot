@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-
-
   def new
     @user = User.new
   end
@@ -13,18 +11,19 @@ class UsersController < ApplicationController
       @user.confirmed = true
     end
   end
+
   def create
     @user = User.new(params[:user])
     @user.confirmation_code = SecureRandom.urlsafe_base64
     @user.confirmed = false
-    @user.save
-    UserMailer.create_email(@user).deliver
 
-    if @user.save
-      session[:user_id] = @user.id
+    begin
+      @user.save!
+      UserMailer.create_email(@user).deliver
+      cookies[:auth_token] = @user.auth_token
       redirect_to root_url, notice: "Thank you for signing up!"
-    else
-      render "new"
+    rescue ActiveRecord::RecordInvalid => e
+      render "new", notice: e.message
     end
   end
 end

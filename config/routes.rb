@@ -1,7 +1,13 @@
 NaturesPathReboot::Application.routes.draw do
 
 
+  resources :nutrition_infos
+
+  resources :ingredients
+
   get 'users/:id/confirm/:confirmation_code', to: 'users#check_confirm_code', as: 'confirm'
+
+  get 'images/:id/:style', to: 'images#show_style'
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
@@ -21,7 +27,9 @@ NaturesPathReboot::Application.routes.draw do
 
   #get "info/contact"
 
-  resources :recipes
+  resources :recipes do
+    resources :images
+  end
 
   get ':id', to: 'pages#show', as: :page
   root to: 'home_posts#show', id: 1
