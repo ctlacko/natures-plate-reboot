@@ -1,6 +1,8 @@
 NaturesPathReboot::Application.routes.draw do
 
 
+  resources :menus
+
   resources :nutrition_infos
 
   resources :ingredients

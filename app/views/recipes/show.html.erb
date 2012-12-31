@@ -1,19 +1,54 @@
-<div id="page-content" class="span-24 np-red">
-  <p id="notice"><%= notice %></p>
+<div id="page-content" class="span-24 np-blue">
+  <p id="notice" class="np-red"><%= notice %></p>
 
-  <p>
-  <b>Title:</b>
-  <%= @recipe.title %>
-  </p>
+  <div class="center">
+    <h1>
+      <%= @recipe.title %> - $<%= @recipe.price.to_i %>
+    </h1>
+    <h2>
+      <%= @recipe.description %>
+    </h2>
+    <h3>
+      Ingredients:
+      <% @recipe.ingredient_ids.each_with_index do |ingredient_id, index| %>
+        <% result =  Ingredient.find(ingredient_id).title %>
+        <% if index != @recipe.ingredient_ids.length-1 %>
+          <% result = result << ', ' %>  
+        <% end %>
+        <%= result %>
+      <% end %>
+    </h3>
+    <hr class="space" />
+    <h2>
+      Nutrition Facts (<%= @recipe.size.downcase %> size) 
+    </h2>
+    <div class="span-9">&nbsp;</div>
+    <div class="np-white span-6">
+      <% if @nutrition_info %>
+        <div class="span-6">
+          <div class="span-3" style="font-face: arial; padding-left:20px; text-align: left;">
+            <b> Calories </b> <br /> 
+            Protein (g) <br />
+            Fat (g) <br />
+            Carbohydrates (g)<br />
+            Fiber (g)<br />
 
-  <p>
+          </div>
+          <div class="prepend-1 span-1"  style="text-align: center;">
+            <b><%= @nutrition_info.calories.to_i %></b>  <br />
+            <%= @nutrition_info.protein.to_i %>  <br />
+            <%= @nutrition_info.fat.to_i %>  <br />
+            <%= @nutrition_info.carbohydates.to_i %> <br />
+            <%= @nutrition_info.fiber.to_i %> <br />
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-  <p>
-  <b>Description:</b>
-  <%= @recipe.description %>
-  </p>
+  </div>
 
-
-  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-  <%= link_to 'Back', recipes_path %>
+  <div class="prepend-9 span-6 append-9">
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+    <%= link_to 'Back', recipes_path %>
+  </div>
 </div>

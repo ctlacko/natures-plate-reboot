@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203005513) do
+ActiveRecord::Schema.define(:version => 20121215184901) do
 
   create_table "home_posts", :force => true do |t|
     t.string   "title"
@@ -55,6 +55,20 @@ ActiveRecord::Schema.define(:version => 20121203005513) do
     t.integer "ingredient_id"
   end
 
+  create_table "menus", :force => true do |t|
+    t.date     "startDate"
+    t.date     "endDate"
+    t.date     "pickUpDate"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "is_current"
+  end
+
+  create_table "menus_recipes", :force => true do |t|
+    t.integer "recipe_id"
+    t.integer "menu_id"
+  end
+
   create_table "nutrition_infos", :force => true do |t|
     t.float    "calories"
     t.float    "protein"
@@ -81,10 +95,12 @@ ActiveRecord::Schema.define(:version => 20121203005513) do
     t.text     "description"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
-    t.string   "type"
     t.integer  "image_reference_id"
     t.string   "image_reference_type"
     t.integer  "nutrition_info_id"
+    t.string   "size"
+    t.float    "price"
+    t.string   "category"
   end
 
   add_index "recipes", ["image_reference_id", "image_reference_type"], :name => "index_recipes_on_image_reference_id_and_image_reference_type"

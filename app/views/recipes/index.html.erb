@@ -1,27 +1,55 @@
-<div id="page-content" class="span-23 np-padding np-red">
-  <h1>Listing recipes</h1>
+<div id="page-content" class="span-24">
 
-  <table>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <% if @current_menus.is_a?(Hash) %>
+    <% @current_menus.each do |current_menu| %>
+      <div class="span-11 np-padding np-blue">
+        <p class="x-large" style="padding-top: 20px; margin-bottom: 5px;">
+        CURRENT WEEK'S MENU
+        </p>
+        <p class="center">
+        Available to order <%= current_menu.startDate %> through <%= current_menu.endDate %>
+        </p>
+        <p class="center">
+        <% @menu_entrees[current_menu.id].each do |menu_entree| %>
+            <%= menu_entree.title %>
+        <% end %>
+        
 
-    <% @recipes.each do |recipe| %>
-      <tr>
-        <td><%= recipe.title %></td>
-        <td><%= recipe.description %></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        </p>
+      </div>
     <% end %>
-  </table>
-
-  <br />
-
-  <%= link_to 'New Recipe', new_recipe_path %>
+  <% else %> 
+    <div class="span-11 np-padding np-blue">
+      <p class="x-large" style="padding-top: 20px; margin-bottom: 5px;">
+      CURRENT WEEK'S MENU
+      </p>
+      <p class="center">
+      Available to order <%= @current_menus.startDate %> through <%= @current_menus.endDate %>
+      </p>
+      <p class="center">
+        <% @menu_entrees.each do |menu_entree| %>
+          <%= menu_entree %> <br />
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+  <div class="span-11 last np-padding np-blue">
+    <p class="x-large"style="padding-top: 20px; margin-bottom: 5px;" >COMPLETE MENU</p>
+    <h2 style="text-align:center;">(rotated weekly)</h2>
+    <p class="center" style="font-size:15px;">Click on selection for nutrition information and pricing</p>
+    <hr class="space" />
+    <h2 style="text-align:center;">SOUPS</h2>
+    <% @soups.each do |soup| %>
+      <p class="center"style="font-size:15px;">
+      <%= link_to soup.title, recipe_path(soup.id) %> - $<%= soup.price.to_i %>
+      </p>
+    <% end %>
+    <hr class="space" />
+    <h2 style="text-align:center;">FULL MEALS (Reg, Large, Family)</h2>
+    <% @full_meals.each do |full_meal| %>
+      <p class="center" style="font-size:15px;">
+      <%= link_to full_meal.title, recipe_path(full_meal.id) %> - $<%= full_meal.price.to_i %>
+      </p>
+    <% end %>
+  </div>
 </div>

@@ -1,13 +1,14 @@
 <%= form_for(@recipe) do |f| %>
   <% if @recipe.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+    <div class="np-blue" id="error_explanation">
+      <div class="np-blue"><h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
-      <ul>
-      <% @recipe.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+          <% @recipe.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
@@ -16,22 +17,44 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </div>
+  <fieldset>
+    <legend>Choose Size</legend>
+    <div class="field">
+      <% ['Regular', 'Large', 'Family'].each do |size| %>
+        <%= f.radio_button(:size, size) %> 
+        <label><%=size.to_s%></label><br />
+      <% end %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Choose Type</legend>
+    <div class="field">
+      <% ['Salad', 'Full Meal', 'Soup'].each do |category| %>
+        <%= f.radio_button(:category, category) %> 
+        <label><%= category.to_s%></label><br />
+      <% end %>
+    </div>
+  </fieldset>
+  <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
   <div class="field">
-  <%= hidden_field_tag "recipe[ingredient_ids][]", nil%>
+    <%= hidden_field_tag "recipe[ingredient_ids][]", nil%>
     <h2> Ingredients </h2>
-  <% Ingredient.all.each do |ingredient| %>
-    <%= check_box_tag "recipe[ingredient_ids][]", ingredient.id, @recipe.ingredient_ids.include?(ingredient.id), id: dom_id(ingredient) %>
-    <%= label_tag dom_id(ingredient), ingredient.title %> <br />
-  <% end %>
-</div>
-<div class = "field">
-  <%= f.fields_for :nutrition_info do |builder| %>
-    <%= render 'nutrition_info_fields', f: builder %>
-  <% end %>
-</div>
+    <% Ingredient.all.each do |ingredient| %>
+      <%= check_box_tag "recipe[ingredient_ids][]", ingredient.id, @recipe.ingredient_ids.include?(ingredient.id), id: dom_id(ingredient) %>
+      <%= label_tag dom_id(ingredient), ingredient.title %> <br />
+    <% end %>
+  </div>
+  <div class = "field">
+    <%= f.fields_for :nutrition_info do |builder| %>
+      <%= render 'nutrition_info_fields', f: builder %>
+    <% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
