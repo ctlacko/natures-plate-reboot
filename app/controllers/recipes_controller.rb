@@ -6,40 +6,21 @@ class RecipesController < ApplicationController
 
     @soups = Recipe.where("category = ?", "Soup")
     @full_meals = Recipe.where("category = ?", "Full Meal")
-    @current_menus = Menu.find(1) #where("is_active = ?", true)
-    @temp_entrees = []
-    @temp_salads = []
+    @current_menus = Menu.where("start_date >= ? AND end_date <= ?", Date.today, Date.today).first
+    temp_entrees = []
+    temp_salads = []
 
-    if @current_menus.is_a?(Hash)
-      @current_menus.each do |current_menu|
-        # build up @menu_entrees and @menu_salads objects
-        # with all recipes related to this menu
-        # they will be referenced by menu_id
-        # the final objects will look like this
-        #
-        # @menu_entrees[menu_id] = { recipe_id => recipe_attributes }
-        current_menu.recipe_ids.each do |recipe_id|
-          @temp_entrees[recipe_id] = Recipe.where("id = ? AND category != ?", recipe_id, "Salad").all
-          @temp_salads[recipe_id] = Recipe.where("id = ? AND category = ?", recipe_id, "Salad").all
-        end
-        @menu_entrees[current_menu.id] = @temp_entrees 
-        @menu_salads[current_menu.id] = @temp_salads
-      end
-    else
-      @current_menus.recipe_ids.each do |recipe_id|
-        # use .all to "commit" the query
-        if !Recipe.where("id = ? AND category != ?", recipe_id, "Salad").empty? 
-          @temp_entrees[recipe_id] = Recipe.where("id = ? AND category != ?", recipe_id, "Salad").all
-        end
-        if !Recipe.where("id = ? AND category = ?", recipe_id, "Salad").empty? 
-          @temp_salads[recipe_id] = Recipe.where("id = ? AND category != ?", recipe_id, "Salad").all
-        end
-      end
-      @menu_entrees = @temp_entrees 
-      @menu_salads = @temp_salads
-      puts @menu_entrees
-      puts @menu_salads
+    @current_menus.recipe_ids.each_with_index do |recipe_id, index|
+      # grab recipes, split on category
+      temp_salad = Recipe.where("id = ? AND category != ?", recipe_id, "Salad").all
+      temp_entree = Recipe.where("id = ? AND category != ?", recipe_id, "Salad").all
+      # push recipes onto temporary arrays
+      temp_entrees << temp_entree if !temp_entree.empty?
+      temp_salads << temp_salad if !temp_salad.empty?
     end
+    # save temp values into member scope arrays
+    @menu_entrees = temp_entrees 
+    @menu_salads = temp_salads
 
     respond_to do |format|
       format.html # index.html.erb

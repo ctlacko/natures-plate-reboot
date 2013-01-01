@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121215184901) do
+ActiveRecord::Schema.define(:version => 20130101215024) do
 
   create_table "home_posts", :force => true do |t|
     t.string   "title"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20121215184901) do
   end
 
   create_table "menus", :force => true do |t|
-    t.date     "startDate"
-    t.date     "endDate"
+    t.date     "start_date"
+    t.date     "end_date"
     t.date     "pickUpDate"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

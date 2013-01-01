@@ -7,14 +7,12 @@
         CURRENT WEEK'S MENU
         </p>
         <p class="center">
-        Available to order <%= current_menu.startDate %> through <%= current_menu.endDate %>
+        Available to order <%= current_menu.start_date %> through <%= current_menu.end_date %>
         </p>
         <p class="center">
-        <% @menu_entrees[current_menu.id].each do |menu_entree| %>
-            <%= menu_entree.title %>
+        <% @menu_entrees.each do |menu_entree| %>
+          <%= menu_entree %>
         <% end %>
-        
-
         </p>
       </div>
     <% end %>
@@ -24,13 +22,24 @@
       CURRENT WEEK'S MENU
       </p>
       <p class="center">
-      Available to order <%= @current_menus.startDate %> through <%= @current_menus.endDate %>
+      Available to order <%= @current_menus.start_date %> through <%= @current_menus.end_date %>.
+      <br />
+      Available for pickup on <%= @current_menus.pickUpDate %> after 3 PM.
       </p>
-      <p class="center">
-        <% @menu_entrees.each do |menu_entree| %>
-          <%= menu_entree %> <br />
+      <p class="large center">
+      <% @menu_entrees.each do |menu_entree| %>
+        <%= menu_entree[0].title %> <br />
+      <% end %>
+      </p>
+      <div class = "x-large" style="text-decoration:underline;">
+        Salads
+      </div>
+      <hr class="space" />
+      <div class="large center" >
+        <% @menu_salads.each do |menu_salad| %>
+          <%= menu_salad[0].title %> <br />
         <% end %>
-      </p>
+      </div>
     </div>
   <% end %>
   <div class="span-11 last np-padding np-blue">
