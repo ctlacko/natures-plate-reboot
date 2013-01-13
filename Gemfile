@@ -4,6 +4,8 @@ gem 'rails', '3.2.11'
 
 gem 'cocoon'
 
+gem 'thin'
+
 
 
 # Bundle edge Rails instead:
