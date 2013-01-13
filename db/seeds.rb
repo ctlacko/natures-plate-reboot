@@ -8,7 +8,7 @@
 #
 
 admins = User.seed ({ email: 'ctlacko@gmail.com', password: 'tinjat.', confirmed: true, admin: true }) 
-User.create { email: 'baker_annette@hotmail.com', password: 'tinjat.', confirmed: true, admin: true }
+User.create ( { email: 'baker_annette@hotmail.com', password: 'tinjat.', confirmed: true, admin: true } )
 home_page = HomePost.create ( { 
  bottom_body: 'Initial bottom_body', 
  top_body: 'Initial top_body',
