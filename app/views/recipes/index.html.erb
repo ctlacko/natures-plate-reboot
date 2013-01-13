@@ -1,46 +1,47 @@
 <div id="page-content" class="span-24">
-
-  <% if @current_menus.is_a?(Hash) %>
-    <% @current_menus.each do |current_menu| %>
+  <% if @current_menus == nil %>
+    <div class="span-11 np-padding np-blue">
+      <p class="x-large" style="padding-top: 20px; margin-bottom: 5px;">
+      There are no menus available.
+      </p>
+    </div>
+  <% else %>
       <div class="span-11 np-padding np-blue">
         <p class="x-large" style="padding-top: 20px; margin-bottom: 5px;">
         CURRENT WEEK'S MENU
         </p>
         <p class="center">
-        Available to order <%= current_menu.start_date %> through <%= current_menu.end_date %>
+        Available to order <%= @current_menus.start_date %> through <%= @current_menus.end_date %>
+        <br/>
+        Avaiable for pick up after 3 PM on <%= @current_menus.pickUpDate%>
         </p>
         <p class="center">
         <% @menu_entrees.each do |menu_entree| %>
-          <%= menu_entree %>
+          <%= link_to menu_entree.title, recipe_path(menu_entree.id) %>  
+          <% menu_entree.inventory_items.each_with_index do |inventory_item, index| %>
+            <%= inventory_item.quantity %> - <%= inventory_item.price %>
+            <% if index != menu_entree.inventory_items.length-1 %>
+              <%= "," %>
+            <% end %>
+          <% end %>
+          <br />
         <% end %>
         </p>
-      </div>
-    <% end %>
-  <% else %> 
-    <div class="span-11 np-padding np-blue">
-      <p class="x-large" style="padding-top: 20px; margin-bottom: 5px;">
-      CURRENT WEEK'S MENU
-      </p>
-      <p class="center">
-      Available to order <%= @current_menus.start_date %> through <%= @current_menus.end_date %>.
-      <br />
-      Available for pickup on <%= @current_menus.pickUpDate %> after 3 PM.
-      </p>
-      <p class="large center">
-      <% @menu_entrees.each do |menu_entree| %>
-        <%= menu_entree[0].title %> <br />
-      <% end %>
-      </p>
-      <div class = "x-large" style="text-decoration:underline;">
-        Salads
-      </div>
-      <hr class="space" />
-      <div class="large center" >
-        <% @menu_salads.each do |menu_salad| %>
-          <%= menu_salad[0].title %> <br />
+        <div class = "x-large" style="text-decoration:underline;">
+          Salads
+        </div>
+        <hr class="space" />
+        <div class="large center" >
+          <% @menu_salads.each do |menu_salad| %>
+            <%= link_to menu_salad.title, recipe_path(menu_salad.id) %><br />  
+          <% end %>
+          Small (2 cups): $2 <br />
+          Large (4 cups): $3.50
+        </div>
+        <% if admin %>
+          <%= link_to 'Edit', edit_menu_path(@current_menus) %></td>
         <% end %>
       </div>
-    </div>
   <% end %>
   <div class="span-11 last np-padding np-blue">
     <p class="x-large"style="padding-top: 20px; margin-bottom: 5px;" >COMPLETE MENU</p>
@@ -48,17 +49,26 @@
     <p class="center" style="font-size:15px;">Click on selection for nutrition information and pricing</p>
     <hr class="space" />
     <h2 style="text-align:center;">SOUPS</h2>
-    <% @soups.each do |soup| %>
-      <p class="center"style="font-size:15px;">
-      <%= link_to soup.title, recipe_path(soup.id) %> - $<%= soup.price.to_i %>
-      </p>
+    <% if @soups.length > 0 %>
+      <% @soups.each do |soup| %>
+        <p class="center"style="font-size:15px;">
+        <%= link_to soup.title, recipe_path(soup.id) %> - $
+        </p>
+      <% end %>
     <% end %>
     <hr class="space" />
     <h2 style="text-align:center;">FULL MEALS (Reg, Large, Family)</h2>
-    <% @full_meals.each do |full_meal| %>
-      <p class="center" style="font-size:15px;">
-      <%= link_to full_meal.title, recipe_path(full_meal.id) %> - $<%= full_meal.price.to_i %>
-      </p>
+    <% if @full_meals.length > 0 %>
+      <% @full_meals.each do |full_meal| %>
+        <p class="center" style="font-size:15px;">
+        <%= link_to full_meal.title, recipe_path(full_meal.id) %> - 
+        <% full_meal.inventory_items.each_with_index do |inventory_item, index| %>
+          $<%= inventory_item.price %>
+          <%= (index == full_meal.inventory_items.length-1) ? "" : "," %> 
+        <% end %>
+        </p>
+      <% end %>
     <% end %>
+
   </div>
 </div>

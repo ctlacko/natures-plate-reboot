@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  before_filter :authorize, only: [:edit, :update]
+  before_filter :admin_filter
+  skip_before_filter :admin_filter, :only => [:show]
 
   # GET /pages
   # GET /pages.json

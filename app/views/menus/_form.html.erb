@@ -1,0 +1,48 @@
+<%= form_for(@menu) do |f| %>
+  <% if @menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+      <ul>
+        <% @menu.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :pickUpDate %><br />
+    <%= f.date_select :pickUpDate %>
+  </div>
+  <div class="field">
+    <h2>Main Items</h2>
+    <% if @full_meals.length > 0 %>
+      <% @full_meals.each do |recipe| %>
+        <%= check_box_tag "menu[recipe_ids][]", recipe.id, @menu.recipe_ids.include?(recipe.id), id: dom_id(recipe) %>
+        <%= label_tag dom_id(recipe), recipe.title %> <br />
+      <% end %>
+    <% end %>
+  </div>
+  <div class="field">
+    <h2>Salads</h2>
+    <% if @salads.length > 0 %>
+      <% @salads.each do |recipe| %>
+        <%= check_box_tag "menu[recipe_ids][]", recipe.id, @menu.recipe_ids.include?(recipe.id), id: dom_id(recipe) %>
+        <%= label_tag dom_id(recipe), recipe.title %> <br />
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

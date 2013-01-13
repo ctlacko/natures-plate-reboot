@@ -1,0 +1,33 @@
+<h1>Listing nutrition_infos</h1>
+
+<table>
+  <tr>
+    <th>Recipe</th>
+    <th>Calories</th>
+    <th>Protein</th>
+    <th>Fat</th>
+    <th>Carbohydates</th>
+    <th>Fiber</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @nutrition_infos.each do |nutrition_info| %>
+  <tr>
+    <td><%= nutrition_info.recipe_id %></td>
+    <td><%= nutrition_info.calories %></td>
+    <td><%= nutrition_info.protein %></td>
+    <td><%= nutrition_info.fat %></td>
+    <td><%= nutrition_info.carbohydates %></td>
+    <td><%= nutrition_info.fiber %></td>
+    <td><%= link_to 'Show', nutrition_info %></td>
+    <td><%= link_to 'Edit', edit_nutrition_info_path(nutrition_info) %></td>
+    <td><%= link_to 'Destroy', nutrition_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Nutrition info', new_nutrition_info_path %>

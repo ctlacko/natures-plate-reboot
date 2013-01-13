@@ -29,9 +29,8 @@ NaturesPathReboot::Application.routes.draw do
 
   #get "info/contact"
 
-  resources :recipes do
-    resources :images
-  end
+  resources :recipes 
+  resources :images
 
   get ':id', to: 'pages#show', as: :page
   root to: 'home_posts#show', id: 1

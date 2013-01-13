@@ -1,0 +1,67 @@
+Add price and size to recipe form - done
+
+Clean up recipe form view - done
+
+Add type field to recipe model and form - done
+
+Add type seeds to DB - no longer necessary
+
+Do front end of Recipe show - done
+
+Do front end of Recipe index. - done
+
+Create Menu model. - done
+
+Menu model:
+HABTM recipes
+startDate
+endDate
+pickupDate
+ingredient_ids
+
+Do front end of Menu model. - partially done, dependant upon completion
+of is_current task and pluralization of sizes and prices
+  - also need to make menu items into links
+
+Use dates instead 
+  - set up custom validator class
+  - done, but needs more testing
+
+setup ability to have multiple prices and sizes - done
+  - size/price model?
+    - inventoryItem
+    - float price, string category
+    - HABTM recipes
+    - only a model
+    - default values
+  - generate model
+  - build migration to add relationship table and add attributes
+  to menu
+  - add to menu model 
+  - do front end (add to menu form) 
+
+
+Fix visited links - done
+
+Push to bluehost
+
+Make action mailer actually mail.
+
+Figure out why CSS disappears
+
+Add philosophy, FAQ, and contact to pages DB seeds. - done
+
+Set up permissions - done
+
+Build admin interface
+  - ability to make users admin
+  - links to image views
+  - ability to add images
+
+Check validation for dates on menu
+
+Add way to order the ingredients
+
+Build Order Scaffold
+  - give user ability to select via checkboxes from currnet_menu
+Style Error Messages

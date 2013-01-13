@@ -17,37 +17,19 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
+      <%= f.fields_for :inventory_items do |builder| %>
+        <%= render "inventory_item_fields", f: builder %>
+      <% end %>
+      <%= link_to_add_association "Add Inventory Item", f, :inventory_items %>
   </div>
-  <fieldset>
-    <legend>Choose Size</legend>
-    <div class="field">
-      <% ['Regular', 'Large', 'Family'].each do |size| %>
-        <%= f.radio_button(:size, size) %> 
-        <label><%=size.to_s%></label><br />
-      <% end %>
-    </div>
-  </fieldset>
-  <fieldset>
-    <legend>Choose Type</legend>
-    <div class="field">
-      <% ['Salad', 'Full Meal', 'Soup'].each do |category| %>
-        <%= f.radio_button(:category, category) %> 
-        <label><%= category.to_s%></label><br />
-      <% end %>
-    </div>
-  </fieldset>
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= hidden_field_tag "recipe[ingredient_ids][]", nil%>
-    <h2> Ingredients </h2>
-    <% Ingredient.all.each do |ingredient| %>
-      <%= check_box_tag "recipe[ingredient_ids][]", ingredient.id, @recipe.ingredient_ids.include?(ingredient.id), id: dom_id(ingredient) %>
-      <%= label_tag dom_id(ingredient), ingredient.title %> <br />
+    <h2> Ingredients (leave blank to exclude from recipe) </h2>
+    <%= fields_for :recipe_rel_ingredients do |builder| %>
+      <%= render 'recipe_rel_ingredient_fields', f: builder, recipe: @recipe %>
     <% end %>
   </div>
   <div class = "field">

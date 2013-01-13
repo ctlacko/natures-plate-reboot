@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Recipe:</b>
+  <%= @nutrition_info.recipe_id %>
+</p>
+
+<p>
+  <b>Calories:</b>
+  <%= @nutrition_info.calories %>
+</p>
+
+<p>
+  <b>Protein:</b>
+  <%= @nutrition_info.protein %>
+</p>
+
+<p>
+  <b>Fat:</b>
+  <%= @nutrition_info.fat %>
+</p>
+
+<p>
+  <b>Carbohydates:</b>
+  <%= @nutrition_info.carbohydates %>
+</p>
+
+<p>
+  <b>Fiber:</b>
+  <%= @nutrition_info.fiber %>
+</p>
+
+
+<%= link_to 'Edit', edit_nutrition_info_path(@nutrition_info) %> |
+<%= link_to 'Back', nutrition_infos_path %>

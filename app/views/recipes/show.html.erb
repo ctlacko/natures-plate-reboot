@@ -3,7 +3,12 @@
 
   <div class="center">
     <h1>
-      <%= @recipe.title %> - $<%= @recipe.price.to_i %>
+      <%= @recipe.title %> - 
+      <% if @inventory_items.length > 0 %>
+        <% @inventory_items.each do |inventory_item| %>
+          $ <%= inventory_item.price.to_i %> 
+        <% end %>
+      <% end %>
     </h1>
     <h2>
       <%= @recipe.description %>
@@ -20,7 +25,7 @@
     </h3>
     <hr class="space" />
     <h2>
-      Nutrition Facts (<%= @recipe.size.downcase %> size) 
+      Nutrition Facts
     </h2>
     <div class="span-9">&nbsp;</div>
     <div class="np-white span-6">
@@ -47,8 +52,10 @@
 
   </div>
 
-  <div class="prepend-9 span-6 append-9">
-    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-    <%= link_to 'Back', recipes_path %>
-  </div>
+  <% if admin %>
+    <div class="prepend-10 span-6">
+      <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+      <%= link_to 'Back', recipes_path %>
+    </div>
+  <% end %>
 </div>

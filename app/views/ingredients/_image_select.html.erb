@@ -1,0 +1,3 @@
+<%= f.label :image_reference, "Image" %>
+<%= select("post", "image_reference_id", Image.all.collect {|p| [ p.image_object_file_name, p.id ] }, {:include_blank => 'None'}) %>
+

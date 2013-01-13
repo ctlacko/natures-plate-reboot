@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
 
+  def admin_filter
+    if current_user.nil? or !current_user.admin
+      redirect_to login_url, alert: "You are not authorized to perform that action." 
+    end
+  end
+
 
   private
   def confirmed

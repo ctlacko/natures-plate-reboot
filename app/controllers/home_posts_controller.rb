@@ -1,4 +1,6 @@
 class HomePostsController < ApplicationController
+  before_filter :admin_filter
+  skip_before_filter :admin_filter, :only => [:show]
   # GET /home_posts
   # GET /home_posts.json
   def index

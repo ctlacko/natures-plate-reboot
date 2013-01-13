@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130101215024) do
+ActiveRecord::Schema.define(:version => 20130112182302) do
 
   create_table "home_posts", :force => true do |t|
     t.string   "title"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(:version => 20130101215024) do
     t.integer "ingredient_id"
   end
 
+  create_table "inventory_items", :force => true do |t|
+    t.float    "price"
+    t.string   "category"
+    t.string   "quantity"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "size"
+    t.integer  "recipe_id"
+  end
+
   create_table "menus", :force => true do |t|
     t.date     "start_date"
     t.date     "end_date"
@@ -90,6 +100,14 @@ ActiveRecord::Schema.define(:version => 20130101215024) do
 
   add_index "pages", ["permalink"], :name => "index_pages_on_permalink"
 
+  create_table "recipe_rel_ingredients", :force => true do |t|
+    t.integer  "recipe_id"
+    t.integer  "ingredient_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "quantity"
+  end
+
   create_table "recipes", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -98,9 +116,6 @@ ActiveRecord::Schema.define(:version => 20130101215024) do
     t.integer  "image_reference_id"
     t.string   "image_reference_type"
     t.integer  "nutrition_info_id"
-    t.string   "size"
-    t.float    "price"
-    t.string   "category"
   end
 
   add_index "recipes", ["image_reference_id", "image_reference_type"], :name => "index_recipes_on_image_reference_id_and_image_reference_type"
@@ -108,6 +123,11 @@ ActiveRecord::Schema.define(:version => 20130101215024) do
   create_table "recipes_ingredients", :force => true do |t|
     t.integer "recipe_id"
     t.integer "ingredient_id"
+  end
+
+  create_table "recipes_inventory_items", :force => true do |t|
+    t.integer "inventory_item_id"
+    t.integer "recipe_id"
   end
 
   create_table "users", :force => true do |t|

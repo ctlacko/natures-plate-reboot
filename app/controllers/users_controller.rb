@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       @user.save!
       UserMailer.create_email(@user).deliver
       cookies[:auth_token] = @user.auth_token
-      redirect_to root_url, notice: "Thank you for signing up!"
+      redirect_to root_url, notice: "Thank you for signing up! Once an administrator has confirmed your account, you will be able to place orders."
     rescue ActiveRecord::RecordInvalid => e
       render "new", notice: e.message
     end

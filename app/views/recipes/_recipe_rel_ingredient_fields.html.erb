@@ -1,0 +1,9 @@
+<% Ingredient.all.each do |ingredient| %>
+  <%= hidden_field_tag "recipe[ingredient_ids][]", nil%>
+  <%= check_box_tag :ingredient_ids, ingredient.id, @recipe.ingredient_ids.include?(ingredient.id), :name => 'recipe[ingredient_ids][]' %>
+  <%= label_tag dom_id(ingredient), ingredient.title %>
+  <br /> 
+<br />
+<% end %>
+
+
