@@ -33,6 +33,14 @@ $np-padding-sides: 20px;
   background: #FFFFFF;
 }
 
+td {
+  color: #000000;
+  a {
+    color: #000000;
+  }
+  background: $np-blue;
+}
+
 .login {
   background: $np-blue;
 }
