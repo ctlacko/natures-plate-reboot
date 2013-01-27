@@ -14,7 +14,11 @@
   <body>
     <div class="container" id="content">
       <div id="user_header" class = "login span-24 last">
-        <div class="login-text span-23">
+        <div class="prepend-1 span-3 append-1 first">
+          &nbsp;
+          <%= render "notice" %>
+        </div>
+        <div class="login-text span-18">
           <% if current_user %>
             Logged in as <%= current_user.email %>.
             <%= link_to "Log Out", logout_path %>
