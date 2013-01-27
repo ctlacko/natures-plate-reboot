@@ -1,11 +1,14 @@
 NaturesPathReboot::Application.routes.draw do
 
 
+
   resources :menus
 
   resources :nutrition_infos
 
   resources :ingredients
+
+  get 'administrator/index'
 
   get 'users/:id/confirm/:confirmation_code', to: 'users#check_confirm_code', as: 'confirm'
 

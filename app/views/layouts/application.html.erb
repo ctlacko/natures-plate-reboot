@@ -18,6 +18,7 @@
           &nbsp;
           <%= render "notice" %>
         </div>
+
         <div class="login-text span-18">
           <% if current_user %>
             Logged in as <%= current_user.email %>.
@@ -27,6 +28,11 @@
             <%= link_to "Log In", login_path %>
           <% end %>
         </div>
+        <% if admin %>
+          <div class="span-22 login-text np-padding">
+            <%= link_to "Admin Index", :controller => "administrator", :action=>"index" %>
+          </div>
+        <% end %>
       </div>
 
 
