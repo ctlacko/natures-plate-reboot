@@ -19,7 +19,7 @@
         <% @menu_entrees.each do |menu_entree| %>
           <%= link_to menu_entree.title, recipe_path(menu_entree.id) %>  
           <% menu_entree.inventory_items.each_with_index do |inventory_item, index| %>
-            <%= inventory_item.quantity %> - <%= inventory_item.price %>
+            <%= inventory_item.quantity %> - <%= number_with_precision inventory_item.price, :precision => 2 %>
             <% if index != menu_entree.inventory_items.length-1 %>
               <%= "," %>
             <% end %>
@@ -54,7 +54,8 @@
         <p class="center"style="font-size:15px;">
         <%= link_to soup.title, recipe_path(soup.id) %> - 
         <% soup.inventory_items.each_with_index do |inventory_item, index| %>
-          $<%= inventory_item.price %> (<%= inventory_item.quantity%>)
+          $<%= number_with_precision inventory_item.price , :precision => 2%>
+          (<%= inventory_item.quantity%>)
           <%= (index == soup.inventory_items.length-1) ? "" : "," %> 
         <% end %>
         </p>
@@ -67,7 +68,8 @@
         <p class="center" style="font-size:15px;">
         <%= link_to full_meal.title, recipe_path(full_meal.id) %> - 
         <% full_meal.inventory_items.each_with_index do |inventory_item, index| %>
-          $<%= inventory_item.price %> (<%= inventory_item.quantity%>)
+          $<%= number_with_precision inventory_item.price, :precision => 2 %>
+          (<%= inventory_item.quantity%>)
           <%= (index == full_meal.inventory_items.length-1) ? "" : "," %> 
         <% end %>
         </p>
@@ -80,7 +82,8 @@
         <p class="center" style="font-size:15px;">
         <%= link_to sandwich.title, recipe_path(sandwich.id) %> - 
         <% sandwich.inventory_items.each_with_index do |inventory_item, index| %>
-          $<%= inventory_item.price %>
+          $<%= number_with_precision inventory_item.price, :precision => 2 %>
+          (<%= inventory_item.quantity%>)
           <%= (index == sandwich.inventory_items.length-1) ? "" : "," %> 
         <% end %>
         </p>
@@ -93,7 +96,8 @@
         <p class="center" style="font-size:15px;">
         <%= link_to cold_dish.title, recipe_path(cold_dish.id) %> - 
         <% cold_dish.inventory_items.each_with_index do |inventory_item, index| %>
-          $<%= inventory_item.price %>
+          $<%= number_with_precision inventory_item.price , :precision => 2%>
+          (<%= inventory_item.quantity%>)
           <%= (index == cold_dish.inventory_items.length-1) ? "" : "," %> 
         <% end %>
         </p>
