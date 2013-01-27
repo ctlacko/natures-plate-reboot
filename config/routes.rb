@@ -1,7 +1,4 @@
 NaturesPathReboot::Application.routes.draw do
-
-
-
   resources :menus
 
   resources :nutrition_infos
@@ -37,6 +34,7 @@ NaturesPathReboot::Application.routes.draw do
   resources :images
 
   get ':id', to: 'pages#show', as: :page
+  put ':id', to: 'pages#update', as: :page
   root to: 'home_posts#show', id: 1
 
   # The priority is based upon order of creation:
