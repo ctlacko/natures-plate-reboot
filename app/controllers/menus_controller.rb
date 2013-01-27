@@ -18,8 +18,6 @@ class MenusController < ApplicationController
   def show
     @menu = Menu.find(params[:id])
 
-    
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @menu }
@@ -31,22 +29,8 @@ class MenusController < ApplicationController
   def new
     @menu = Menu.new
 
-    @salads = []
-    @full_meals = []
-
-    temp_salads = InventoryItem.where("category = ?", "Salad").all
-    if !temp_salads.empty?
-      temp_salads.each do |item|
-        @salads << Recipe.find(item.recipe_id)
-      end
-    end
-
-    temp_meals = InventoryItem.where("category = ? OR category = ?", "Full Meal", "Soup").all
-    if !temp_meals.empty?
-      temp_meals.each do |item|
-        @full_meals << Recipe.find(item.recipe_id)
-      end
-    end
+    @salads =  Recipe.where("category = ?", "Salad").all
+    @full_meals = Recipe.where("category != ?", "Salad").all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -80,21 +64,17 @@ class MenusController < ApplicationController
   # GET /menus/1/edit
   def edit
     @menu = Menu.find(params[:id])
+    @salads =  Recipe.where("category = ?", "Salad").all
+    @full_meals = Recipe.where("category != ?", "Salad").all
 
-    @salads = []
-    @salads = get_salads
-    @full_meals = []
-    @full_meals = get_full_meals
   end
   # POST /menus
   # POST /menus.json
   def create
     @menu = Menu.new(params[:menu])
 
-    @salads = []
-    @salads = get_salads
-    @full_meals = []
-    @full_meals = get_full_meals
+    @salads =  Recipe.where("category = ?", "Salad").all
+    @full_meals = Recipe.where("category != ?", "Salad").all
 
     respond_to do |format|
       if @menu.save
@@ -111,11 +91,8 @@ class MenusController < ApplicationController
   # PUT /menus/1.json
   def update
     @menu = Menu.find(params[:id])
-
-    @salads = []
-    @salads = get_salads
-    @full_meals = []
-    @full_meals = get_full_meals
+    @salads =  Recipe.where("category = ?", "Salad").all
+    @full_meals = Recipe.where("category != ?", "Salad").all
 
     respond_to do |format|
       if @menu.update_attributes(params[:menu])

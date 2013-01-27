@@ -43,12 +43,10 @@ class RecipesController < ApplicationController
         # use recipe_id to look up recipe
         temp_recipe = Recipe.where("id = ?", recipe_id).first
         # iterate on inventory items of that recipe
-        temp_recipe.inventory_items.each do |inventory_item|
-          if inventory_item.category == "Salad"
-            temp_salads << temp_recipe
-          else
-            temp_entrees << temp_recipe
-          end
+        if temp_recipe.category == "Salad"
+          temp_salads << temp_recipe
+        else
+          temp_entrees << temp_recipe
         end
       end
       # save temp values into member scoped arrays

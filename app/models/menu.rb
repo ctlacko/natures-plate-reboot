@@ -19,7 +19,7 @@ class Menu < ActiveRecord::Base
   include ActiveModel::Validations
   attr_accessible :end_date, :pickUpDate, :start_date, :recipe_ids, :is_current 
 
-  validates_with OnlyOneValidator
+  #validates_with OnlyOneValidator
 
   has_and_belongs_to_many :recipes
 end
