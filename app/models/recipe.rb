@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
   # getters and setters
-  attr_accessible :description, :title, :ingredient_ids, :nutrition_info_attributes, :nutrition_info_id, :inventory_items_attributes 
+  attr_accessible :description, :title, :ingredient_ids, :nutrition_info_attributes, :nutrition_info_id, :inventory_items_attributes, :category 
 
   # relationships
   has_one :nutrition_info

@@ -48,23 +48,53 @@
     <h2 style="text-align:center;">(rotated weekly)</h2>
     <p class="center" style="font-size:15px;">Click on selection for nutrition information and pricing</p>
     <hr class="space" />
-    <h2 style="text-align:center;">SOUPS</h2>
+    <h2 style="text-align:center;">SOUPS/STEWS</h2>
     <% if @soups.length > 0 %>
       <% @soups.each do |soup| %>
         <p class="center"style="font-size:15px;">
-        <%= link_to soup.title, recipe_path(soup.id) %> - $
+        <%= link_to soup.title, recipe_path(soup.id) %> - 
+        <% soup.inventory_items.each_with_index do |inventory_item, index| %>
+          $<%= inventory_item.price %> (<%= inventory_item.quantity%>)
+          <%= (index == soup.inventory_items.length-1) ? "" : "," %> 
+        <% end %>
         </p>
       <% end %>
     <% end %>
     <hr class="space" />
-    <h2 style="text-align:center;">FULL MEALS (Reg, Large, Family)</h2>
+    <h2 style="text-align:center;">MAIN DISHES</h2>
     <% if @full_meals.length > 0 %>
       <% @full_meals.each do |full_meal| %>
         <p class="center" style="font-size:15px;">
         <%= link_to full_meal.title, recipe_path(full_meal.id) %> - 
         <% full_meal.inventory_items.each_with_index do |inventory_item, index| %>
-          $<%= inventory_item.price %>
+          $<%= inventory_item.price %> (<%= inventory_item.quantity%>)
           <%= (index == full_meal.inventory_items.length-1) ? "" : "," %> 
+        <% end %>
+        </p>
+      <% end %>
+    <% end %>
+    <hr class="space" />
+    <h2 style="text-align:center;">SANDWICHES</h2>
+    <% if @sandwiches.length > 0 %>
+      <% @sandwiches.each do |sandwich| %>
+        <p class="center" style="font-size:15px;">
+        <%= link_to sandwich.title, recipe_path(sandwich.id) %> - 
+        <% sandwich.inventory_items.each_with_index do |inventory_item, index| %>
+          $<%= inventory_item.price %>
+          <%= (index == sandwich.inventory_items.length-1) ? "" : "," %> 
+        <% end %>
+        </p>
+      <% end %>
+    <% end %>
+    <hr class="space" />
+    <h2 style="text-align:center;">COLD DISHES</h2>
+    <% if @cold_dishes.length > 0 %>
+      <% @cold_dishes.each do |cold_dish| %>
+        <p class="center" style="font-size:15px;">
+        <%= link_to cold_dish.title, recipe_path(cold_dish.id) %> - 
+        <% cold_dish.inventory_items.each_with_index do |inventory_item, index| %>
+          $<%= inventory_item.price %>
+          <%= (index == cold_dish.inventory_items.length-1) ? "" : "," %> 
         <% end %>
         </p>
       <% end %>

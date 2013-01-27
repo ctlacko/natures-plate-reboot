@@ -26,6 +26,13 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+  <div class = "field">
+    <%= f.label :category, "Choose Type" %><br />
+    <% ['Salad', 'Main Dish', 'Soup', 'Cold Dish', 'Sandwich'].each do |category| %>
+      <%= f.radio_button(:category, category) %> 
+      <label><%= category.to_s%></label><br />
+    <% end %>
+  </div>
   <div class="field">
     <h2> Ingredients (leave blank to exclude from recipe) </h2>
     <%= fields_for :recipe_rel_ingredients do |builder| %>

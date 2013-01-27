@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130112182302) do
+ActiveRecord::Schema.define(:version => 20130127195802) do
 
   create_table "home_posts", :force => true do |t|
     t.string   "title"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20130112182302) do
     t.integer  "image_reference_id"
     t.string   "image_reference_type"
     t.integer  "nutrition_info_id"
+    t.string   "category"
   end
 
   add_index "recipes", ["image_reference_id", "image_reference_type"], :name => "index_recipes_on_image_reference_id_and_image_reference_type"

@@ -14,22 +14,11 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   def index
     @recipes = Recipe.all
-    @soups = []
-    @full_meals = []
+    @soups = Recipe.where("category = ?", "Soup").all
+    @full_meals =Recipe.where("category = ?", "Main Dish").all 
+    @sandwiches =Recipe.where("category = ?", "Sandwich").all 
+    @cold_dishes =Recipe.where("category = ?", "Cold Dish").all 
 
-    temp_soups = InventoryItem.where("category = ?", "Soup").all
-    if !temp_soups.empty?
-      temp_soups.each do |item|
-        @soups << Recipe.find(item.recipe_id)
-      end
-    end
-
-    temp_meals = InventoryItem.where("category = ?", "Full Meal").all
-    if !temp_meals.empty?
-      temp_meals.each do |item|
-        @full_meals << Recipe.find(item.recipe_id)
-      end
-    end
 
     # setup our current_menus
     # -----------------------
