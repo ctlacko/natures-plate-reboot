@@ -1,6 +1,15 @@
 class RecipesController < ApplicationController
   before_filter :admin_filter
   skip_before_filter :admin_filter, :only => [:show, :index]
+
+  def admin_show
+    @recipes = Recipe.all
+
+    respond_to do |format|
+      format.html  #admin_show.html.erb
+      format.json { render json: @recipes }
+    end
+  end
   # GET /recipes
   # GET /recipes.json
   def index

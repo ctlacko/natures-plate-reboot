@@ -29,6 +29,7 @@ NaturesPathReboot::Application.routes.draw do
 
   #get "info/contact"
 
+  match 'recipes/admin_show'
   resources :recipes 
   resources :images
 
