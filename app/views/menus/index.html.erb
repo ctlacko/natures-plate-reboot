@@ -14,8 +14,8 @@
 
 <% @menus.each do |menu| %>
   <tr>
-    <td><%= menu.startDate %></td>
-    <td><%= menu.endDate %></td>
+    <td><%= menu.start_date %></td>
+    <td><%= menu.end_date %></td>
     <td><%= menu.pickUpDate %></td>
     <td><%= link_to 'Show', menu %></td>
     <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
