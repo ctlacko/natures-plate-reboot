@@ -6,7 +6,7 @@
       <%= @recipe.title %> - 
       <% if @inventory_items.length > 0 %>
         <% @inventory_items.each do |inventory_item| %>
-          $ <%= inventory_item.price.to_i %> 
+          $ <%= number_with_precision inventory_item.price, :precision => 2%> 
         <% end %>
       <% end %>
     </h1>
