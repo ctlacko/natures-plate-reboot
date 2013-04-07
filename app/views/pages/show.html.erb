@@ -3,7 +3,7 @@
 <div  class="span-23 last <%= @page.name %>">
   <h1 class="center"><%= @page.name %></h1>
 
-  <%= simple_format @page.content %>
+  <%= simple_format @page.content.html_safe %>
 
   <% if admin %>
 

@@ -17,7 +17,7 @@
 
     <div class="span-15">
       <p>
-      <%= @home_post.top_body %>
+      <%= @home_post.top_body.html_safe %>
       </p>
     </div>
   </div>
@@ -28,7 +28,7 @@
     <h2><%= @home_post.bottom_title %></h2>
     </p>
     <p>
-    <%= @home_post.bottom_body %>
+    <%= @home_post.bottom_body.html_safe %>
     </p>
     <% if admin %>
         <%= link_to 'Edit', edit_home_post_path(@home_post) %> |
