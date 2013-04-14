@@ -26,8 +26,9 @@ NaturesPathReboot::Application.configure do
     address: "mail.naturesplate.biz",
     port: 26,
     domain: "naturesplate.biz",
-    authentication: "plain",
-    enable_starttls_auto: true,
+    authentication: :plain,
+    #enable_starttls_auto: true,
+    openssl_verify_mode: 'none',
     user_name: "support@naturesplate.biz",
     password: "pAspafa6"
   }
