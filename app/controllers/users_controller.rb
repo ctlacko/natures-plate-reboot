@@ -10,6 +10,12 @@ class UsersController < ApplicationController
       @user.confirmation_code = ""
       @user.confirmed = true
     end
+
+    if @user.confirmed
+      redirect_to root_url, notice: "Account confirmed"
+    else
+      redirect_to root_url, error: "Something went wrong with user confirmation. Contact an administrator."
+    end
   end
 
   def create
