@@ -20,6 +20,18 @@ NaturesPathReboot::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address: "mail.naturesplate.biz",
+    port: 26,
+    domain: "naturesplate.biz",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: "support@naturesplate.biz",
+    password: "pAspafa6"
+  }
+
   config.action_mailer.default_url_options = { :host => "http://www.naturesplate.biz" }
 
   # Defaults to nil and saved in location specified by config.assets.prefix
