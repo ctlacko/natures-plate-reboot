@@ -33,7 +33,7 @@ NaturesPathReboot::Application.configure do
     password: "pAspafa6"
   }
 
-  config.action_mailer.default_url_options = { :host => "http://www.naturesplate.biz" }
+  config.action_mailer.default_url_options = { :host => "www.naturesplate.biz" }
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
