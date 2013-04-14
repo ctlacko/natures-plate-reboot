@@ -1,19 +1,21 @@
 require "bundler/capistrano"
 
-server "178.xxx.xxx.xxx", :web, :app, :db, primary: true
+server "ec2-50-16-75-67.compute-1.amazonaws.com", :web, :app, :db, primary: true
 
-set :application, "blog"
-set :user, "deployer"
+set :application, "natures-plate-reboot"
+set :user, "ubuntu"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
+
 set :scm, "git"
-set :repository, "git@github.com:ctlacko/#{application}.git"
+set :repository, "https://github.com/ctlacko/natures-plate-reboot.git"
 set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+ssh_options[:keys] = "/Users/chrislacko1/Downloads/key-aws-single.pem"
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
@@ -26,7 +28,7 @@ namespace :deploy do
   end
 
   task :setup_config, roles: :app do
-    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
+    sudo "ln -nfs #{current_path}/config/nginx.conf /opt/nginx/conf/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
     put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"

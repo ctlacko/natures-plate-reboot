@@ -6,8 +6,7 @@ Username: <%= @user.email %>
 
 Go to the URL below to confirm access. This will allow the user to place orders.
 
-<%= (Rails.root.to_s + confirm_path( :id => @user.id, :confirmation_code => @user.confirmation_code )).to_s%>
+<%= link_to "Confirm access", confirm_url(:id => @user.id, :confirmation_code => @user.confirmation_code) %>
 
-<%= link_to "Confirm access", Rails.root.to_s + confirm_path( :id => @user.id, :confirmation_code => @user.confirmation_code ) %>
-
+<%= confirm_url(:id => @user.id, :confirmation_code => @user.confirmation_code) %>
 

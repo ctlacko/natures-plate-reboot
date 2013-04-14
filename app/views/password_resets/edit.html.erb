@@ -1,6 +1,5 @@
 
-<div id="page-content" class="span-24">
-
+<div id="" class="span-23 np-red np-padding">
 
   <h1>Reset Password</h1>
 
@@ -15,15 +14,15 @@
         </ul>
       </div>
     <% end %>
-    <div class="field">
+    <div class="field span-5 append-18">
       <%= f.label :password %>
       <%= f.password_field :password %>
     </div>
-    <div class="field">
-      <%= f.label :password_confirmation %>
+    <div class="field span-5 append-18">
+      <%= f.label :password_confirmation, "Confirm" %>
       <%= f.password_field :password_confirmation %>
     </div>
-    <div class="actions"><%= f.submit "Update Password" %></div>
+    <div class="actions"><%= f.submit "Save Password" %></div>
   <% end %>
 
 </div>

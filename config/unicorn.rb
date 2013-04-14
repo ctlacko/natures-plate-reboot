@@ -1,4 +1,4 @@
-root = "/home/deployer/apps/natures-plate-reboot"
+root = "/home/ubuntu/apps/natures-path-reboot/current"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
