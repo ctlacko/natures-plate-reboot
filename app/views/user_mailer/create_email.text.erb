@@ -2,7 +2,11 @@ A new user is requesting access to NaturesPlate.biz!
 
 Here is their information:
 
-Username: <%= @user.email %>
+Email: <%= @user.email %>
+Name: <%= @user.first_name %> <%= @user.last_name %>
+Address: <%= @user.street_address %> 
+Zip Code: <%= @user.zip_code %>
+Phone Number: <%= @user.phone_number %>
 
 Go to the URL below to confirm access. This will allow the user to place orders.
 

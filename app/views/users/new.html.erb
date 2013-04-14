@@ -13,18 +13,44 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
-    </div>
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %>
-    </div>
+    <fieldset>
+      <legend>Account Information</legend>
+      <div class="field span-18">
+        <%= f.label :email %><br />
+        <%= f.text_field :email %>
+      </div>
+      <div class="field span-6">
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+      </div>
+      <div class="field span-6 append-10">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation %>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Personal Information</legend>
+      <div class="field span-6">
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name %>
+      </div>
+      <div class="field span-6 append-9">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name %>
+      </div>
+      <div class="field span-6">
+        <%= f.label :street_address %><br />
+        <%= f.text_field :street_address %>
+      </div>
+      <div class="field span-6 append-9">
+        <%= f.label :zip_code %><br />
+        <%= f.number_field :zip_code %>
+      </div>
+      <div class="field span-20">
+        <%= f.label :phone_number %><br />
+        <%= f.telephone_field :phone_number %>
+      </div>
+    </fieldset>
     <div class="actions"><%= f.submit "Sign Up" %></div>
   <% end %>
 
